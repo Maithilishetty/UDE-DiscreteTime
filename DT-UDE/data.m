@@ -16,7 +16,7 @@ b_n = 1;
 Dis = 10;              %Constant Disturbance
 
 xic = [-2 1];          %Initial States
-T = 0.1;               %Filter Time Constant
+T = 0.01;              %Filter Time Constant
 K = [0 0];             %Error Dynamics: z^2 + K(1)z + K(2) = 0
 
 %Simulation Parameters

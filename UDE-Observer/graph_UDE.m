@@ -1,6 +1,5 @@
 xref = 10*sin(time);
 
-figure
 set(gcf, 'DefaultLineLineWidth',1.5)
 set(gca, 'FontSize',24,'FontWeight','bold')
 plot(time, control, 'b');
