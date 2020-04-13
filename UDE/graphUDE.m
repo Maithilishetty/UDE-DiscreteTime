@@ -1,3 +1,5 @@
+global Ts tstop
+
 xref = sin(0.3*2*pi*time);
 
 set(gcf, 'DefaultLineLineWidth',1.5)
@@ -14,7 +16,7 @@ grid on
 figure;
 set(gcf, 'DefaultLineLineWidth',1.5)
 set(gca, 'FontSize',24,'FontWeight','bold')
-plot(time, control, 'b');
+plot(0:Ts:tstop, control, 'b');
 xlabel('Time');
 ylabel('Value');
 title('Control Input');
@@ -26,7 +28,7 @@ set(gca, 'FontSize',24,'FontWeight','bold')
 plot(time, (xref - x1), 'r');
 xlabel('Time');
 ylabel('Value');
-title('Tracking Error');
+title('Tracking Error for x1');
 grid on
 
 % figure;
