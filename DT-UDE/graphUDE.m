@@ -18,6 +18,13 @@ ylabel('Values');
 title('Control Input');
 grid on
 
+figure
+stem(time, obs_err, 'r', 'filled');
+xlabel('Time');
+ylabel('Value');
+title('State Estimation Error');
+grid on
+
 figure;
 stem(time, (xref - x1), 'r', 'filled');
 xlabel('Time');
