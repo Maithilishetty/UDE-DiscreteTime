@@ -31,6 +31,15 @@ ylabel('Value');
 title('Tracking Error for x1');
 grid on
 
+figure;
+set(gcf, 'DefaultLineLineWidth',1.5)
+set(gca, 'FontSize',24,'FontWeight','bold')
+plot(time, obs_err, 'r');
+xlabel('Time');
+ylabel('Value');
+title('State Estimation Error');
+grid on
+
 % figure;
 % D = (a1 - a1_n)*x1 + (a2 - a2_n)*x2 + (b - b_n)*control + Dis;
 % stem(time, D, 'r', 'filled');

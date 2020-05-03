@@ -2,7 +2,7 @@ close all
 clear
 clc
 
-global Ts A_n B_n Dis xic Ad Bd Cd T tstep tstop A1 B1 C1
+global Ts A_n B_n Dis xic Ad Bd Cd T tstep tstop A1 B1 C1 TC L x_hat_ic A B
 
 Ts = 0.01;              %Sampling Time
 
@@ -34,6 +34,11 @@ Bd = TC\B1;
 Cd = C1*TC;
 
 T = 0.1;               %Filter Time Constant
+
+%Observer Parameters
+Po = [-30; -30];
+L = acker(A', C', Po);
+x_hat_ic = [-2; 1];
 
 %Simulation Parameters
 tstep = 0.001;

@@ -1,8 +1,10 @@
-xref = sin(2*pi*0.3*time);
+global Ts tstop
 
-stem(time, xref, 'r', 'filled');
+xref = sin(2*pi*3*time);
+
+plot(time, xref, 'r');
 hold on
-stem(time, x1, 'b', 'filled');
+plot(time, x1, 'b');
 xlabel('Time');
 ylabel('Values');
 title('Reference input and State x1');
@@ -10,14 +12,14 @@ legend('Reference', 'State x1');
 grid on
 
 figure;
-stem(time, control, 'b', 'filled');
+plot(0:Ts:tstop, control, 'b');
 xlabel('Time');
 ylabel('Values');
 title('Control Input');
 grid on
 
 figure;
-stem(time, (xref - x1), 'r', 'filled');
+plot(time, (xref - x1), 'r');
 xlabel('Time');
 ylabel('Values');
 title('Tracking Error');
