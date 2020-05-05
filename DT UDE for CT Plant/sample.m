@@ -1,12 +1,10 @@
 function op = sample(u)
     global Ts
 
-    t = u(3);
+    t = u(2);
     if mod(t, Ts) == 0
-        op(1) = u(1);
-        op(2) = u(2);
+        op = u(1);
     else
-        op(1) = 0;
-        op(2) = 0;
+        op = 0;
     end
 end

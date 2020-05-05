@@ -40,8 +40,8 @@ Bd = TC\G;
 Cd = C*TC;
 
 %Observer Parameters
-Po = [-30; -30];
-L = acker(A', C', Po);
+Po = [0 0];
+L = acker(F', C', Po);
 x_hat_ic = [-2; 1];
 
 p = C*G;
