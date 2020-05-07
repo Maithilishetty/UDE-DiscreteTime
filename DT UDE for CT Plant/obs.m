@@ -1,5 +1,6 @@
 function op = obs(u)
     global F G L Ts
+    
     t = u(5);
     if mod(t, Ts) == 0
         op(1) = F(1, 1)*u(1) + F(1, 2)*u(2) + G(1)*u(3) + L(1)*u(6);

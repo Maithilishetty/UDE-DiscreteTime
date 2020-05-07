@@ -6,10 +6,10 @@ global tstep tstop Ts T A_n B_n Dis xic A B C F G TC Ad Bd Cd L x_hat_ic trackin
 
 %Simulation Parameters
 tstep = 0.001;
-tstop = 10;
+tstop = 100;
 
 Ts = 0.01;              %Sampling Time
-T = 0.2;                %Filter Time Constant
+T = 10;                %Filter Time Constant
 
 %Actual Plant Parameters
 A_n = [0 1; -2 3];
@@ -40,8 +40,8 @@ Bd = TC\G;
 Cd = C*TC;
 
 %Observer Parameters
-Po = [0 0];
-L = acker(F', C', Po);
+Po = [0.1; -0.1];
+L = acker(F', C', Po)';
 x_hat_ic = [-2; 1];
 
 p = C*G;
