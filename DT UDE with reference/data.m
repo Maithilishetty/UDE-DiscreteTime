@@ -25,7 +25,7 @@ T = 0.01;              %Filter Time Constant
 
 %Simulation Parameters
 tstep = 0.01;
-tstop = 1;
+tstop = 0.5;
 
 sim('DT_UDE_Reference.slx')
 graphUDE
