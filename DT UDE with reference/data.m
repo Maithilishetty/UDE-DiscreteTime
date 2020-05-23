@@ -2,7 +2,7 @@ close all
 clear
 clc
 
-global A_n B_n C_n A B C Am Bm Dis xic xmic T tstep tstop
+global A_n B_n C_n A B C Am Bm Dis xic xmic T tstep tstop eic udic Fe
 
 %Plant Parameters as Known
 A_n = [0 1;-1 0.6];
@@ -19,9 +19,13 @@ Dis = 10;              %Constant Disturbance
 Am = [0 1;0.4 0.5];
 Bm = [0;1];
 
-xic = [-2 1];          %Initial States
+Fe = [0.6 0; 0 -0.6];
+
+xic = [-2 -1];          %Initial States
 xmic = [1 1];
+eic = xic - xmic;
 T = 0.01;              %Filter Time Constant
+udic = (-tstep/T)*(xic(2) - xmic(2));
 
 %Simulation Parameters
 tstep = 0.01;

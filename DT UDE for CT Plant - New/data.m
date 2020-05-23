@@ -2,7 +2,7 @@ close all
 clear
 clc
 
-global tstep tstop Ts T A_n B_n Dis xic A B C Am Bm xmic Ad Bd TC Fdm Gdm
+global tstep tstop Ts T A_n B_n Dis xic A B C Am Bm xmic Ad Bd TC Fdm Gdm eic Fe udic
 
 %Simulation Parameters
 tstep = 0.001;
@@ -32,6 +32,9 @@ Cm = [1 0];
 Dm = 0;
 xmic = [1 1]';
 
+eic = xic - xmic;
+Fe = [-0.2 0; 0 -0.2];
+
 %Discretizing Known Plant Parameters
 sysD = c2d(ss(A_n, B_n, C_n, D_n), Ts);
 F = sysD.A;
@@ -54,6 +57,10 @@ Gm = sysM.B;
 
 Fdm = TC\Fm*TC;
 Gdm = TC\Gm;
+
+xtic = TC*xic;
+xtmic = TC*xmic;
+udic = (-Ts/T)*(xtic(2) - xtmic(2));
 
 sim('UDE_CT.slx')
 graphUDE
