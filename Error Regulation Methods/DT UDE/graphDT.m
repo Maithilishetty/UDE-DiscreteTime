@@ -1,8 +1,6 @@
-global F F_n G G_n
-Dis1 = (F(1, :)-F_n(1, :))*[x1'; x2'] + (G(1)-G_n(1))*control' + (x1.*x1)';
-Dis2 = (F(2, :)-F_n(2, :))*[x1'; x2'] + (G(2)-G_n(2))*control' + (time.*sin(x1).*sin(x2))';
-Dis = [Dis1; Dis2];
-L = pinv(G_n)*Dis;
+global F F_n G G_n F_m G_m
+ref = sin(2*pi*0.3*time);
+Dis = (F(2, :)-F_n(2, :))*[x1'; x2'] + (G(2)-G_n(2))*control' + 0.01*(sin(time.*x1.*x1))' + (F_n(2, :) - F_m(2, :))*[x1'; x2'] - G_m(2)*ref';
 
 stem(time, x1, 'b', 'filled');
 hold on
@@ -41,7 +39,7 @@ legend('Error in x1', 'Error in x2');
 grid on
 
 figure;
-stem(time, L + ud', 'r', 'filled');
+stem(time, Dis + ud', 'r', 'filled');
 xlabel('Time');
 ylabel('Value');
 title('Disturbance Estimation Error');

@@ -1,5 +1,8 @@
-global A A_n B B_n
-Dis = (A(2, :)-A_n(2, :))*[x1'; x2'] + (B(2)-B_n(2))*control' + 2*(sin(time).*x1.*x1 + cos(time).*x2 + 1)';
+global A A_n A_m B B_n B_m tstep Ts tstop
+ref = sin(2*pi*0.3*time);
+in = upsample(control, 10);
+ud = upsample(ud, 10);
+Dis = (A(2, :)-A_n(2, :))*[x1'; x2'] + (B(2)-B_n(2))*in(1:((tstop/tstep)+1))' + 2*(sin(time).*x1.*x1 + cos(time).*x2 + 1)' + (A_n(2, :) - A_m(2, :))*[x1m'; x2m'] - B_m(2)*ref';
 
 set(gcf, 'DefaultLineLineWidth', 1.5)
 set(gca, 'FontSize', 24, 'FontWeight', 'bold')
@@ -27,7 +30,7 @@ grid on
 figure;
 set(gcf, 'DefaultLineLineWidth', 1.5)
 set(gca, 'FontSize', 24, 'FontWeight', 'bold')
-plot(time, control, 'b');
+plot(0:Ts:tstop, control, 'b');
 xlabel('Time');
 ylabel('Value');
 title('Control Input');
@@ -48,7 +51,7 @@ grid on
 figure;
 set(gcf, 'DefaultLineLineWidth', 1.5)
 set(gca, 'FontSize', 24, 'FontWeight', 'bold')
-plot(time, Dis + ud', 'r');
+plot(time, Dis + (ud(1:(tstop/tstep + 1)))', 'r');
 xlabel('Time');
 ylabel('Value');
 title('Disturbance Estimation Error');
