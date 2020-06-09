@@ -23,7 +23,7 @@ xmic = [-3; -2];
 
 %LQR Parameters
 Q = eye(2);
-R = 2;
+R = 1;
 K = dlqr(F_n, G_n, Q, R);
 Fe = F_n - G_n*K;
 

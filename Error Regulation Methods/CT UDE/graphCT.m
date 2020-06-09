@@ -1,5 +1,6 @@
-global A A_n B B_n
-Dis = (A(2, :)-A_n(2, :))*[x1'; x2'] + (B(2)-B_n(2))*control' + 2*(sin(time).*x1.*x1 + cos(time).*x2 + 1)';
+global A A_n A_m B B_n B_m
+ref = sin(2*pi*0.3*time);
+Dis = (A(2, :)-A_n(2, :))*[x1'; x2'] + (B(2)-B_n(2))*control' + 2*(sin(time).*x1.*x1 + cos(time).*x2 + 1)' + (A_n(2, :) - A_m(2, :))*[x1m'; x2m'] - B_m(2)*ref';
 
 set(gcf, 'DefaultLineLineWidth', 1.5)
 set(gca, 'FontSize', 24, 'FontWeight', 'bold')

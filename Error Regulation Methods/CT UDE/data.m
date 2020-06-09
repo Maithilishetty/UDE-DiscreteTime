@@ -23,7 +23,7 @@ xmic = [-3; -2];
 
 %LQR Parameters
 Q = eye(2);
-R = 2;
+R = 1;
 K = lqr(A_n, B_n, Q, R);
 Ae = A_n - B_n*K;
 

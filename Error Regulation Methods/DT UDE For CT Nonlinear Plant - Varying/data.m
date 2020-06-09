@@ -1,5 +1,5 @@
 close all 
-clear all 
+clear
 clc
 
 global A_n B_n A B A_m B_m a c1 c2 xic xmic K Fe Ts T F_n G_n tstep tstop A_alpha B_alpha alphaic
@@ -64,4 +64,4 @@ eic = xic - xmic;                   %Error Initial Condition
 udic = (-Ts/T)*pinv(G_n)*eic;       %Initial Condition for Robust Control
 
 sim('UDE_nonlinear.slx');
-graphUDE_nonlinear
+%graphUDE_nonlinear

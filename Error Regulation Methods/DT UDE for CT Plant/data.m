@@ -6,7 +6,7 @@ global tstep Ts tstop A_n B_n A B xic A_m B_m xmic F_n G_n K Fe T eic udic
 
 tstep = 0.001;
 Ts = 0.01;
-tstop = 20;
+tstop = 10;
 
 %Nominal Plant Parameters
 A_n = [0 1; -2 3];
@@ -29,14 +29,14 @@ F_n = sysD.A;
 G_n = sysD.B;
 
 %LQR Parameters
-Q = 2*eye(2);
-R = 0.5;
+Q = eye(2);
+R = 1;
 K = dlqr(F_n, G_n, Q, R);
 Fe = F_n - G_n*K;
 
 T = 0.01;                           %Filter Time Constant
 eic = xic - xmic;                   %Error Initial Condition
-udic = (-tstep/T)*pinv(G_n)*eic;    %Initial Condition for Robust Control
+udic = (-Ts/T)*pinv(G_n)*eic;       %Initial Condition for Robust Control
 
 sim('UDE.slx');
 graphUDE

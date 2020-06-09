@@ -1,5 +1,5 @@
 close all 
-clear all 
+clear
 clc
 
 global A_n B_n A B A_m B_m b1 mu2 b2 xic xmic K Fe Ts T F_n G_n tstep tstop
