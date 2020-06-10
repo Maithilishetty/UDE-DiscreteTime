@@ -64,4 +64,4 @@ eic = xic - xmic;                   %Error Initial Condition
 udic = (-Ts/T)*pinv(G_n)*eic;       %Initial Condition for Robust Control
 
 sim('UDE_nonlinear.slx');
-%graphUDE_nonlinear
+graphUDE_nonlinear

@@ -14,5 +14,5 @@ function op = plant(u)
     end
     d_external = 0.6141*u(1) + 1.2099*u(2) - 0.0513*u(1)^2*u(2) + 0.035*u(1)*u(2)^2 + 0.0135*u(2)^3;
     op(1) = A(1, :)*states + B(1)*u(3);
-    op(2) = A(2, :)*states + B(2)*u(3) + dis + d_external;
+    op(2) = dis + B(2)*u(3) + d_external;
 end
