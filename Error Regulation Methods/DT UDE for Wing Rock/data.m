@@ -6,16 +6,16 @@ global tstep Ts tstop A_n B_n A B xic A_m B_m xmic F_n G_n K Fe T eic udic
 
 tstep = 0.001;
 Ts = 0.01;
-tstop = 8;
+tstop = 10;
 
 %Nominal Plant Parameters
 A_n = [0 1; -20 1];
-B_n = [0; 0.5];
+B_n = [0; 0.5*180/pi];
 
 %Actual Plant Parameters
 A = [0 1; -26.7 0.765];
-B = [0; 0.75];
-xic = [pi/6; -pi/9];
+B = [0; 0.75*180/pi];
+xic = [pi/6; -pi/6];
 
 %Reference Model Parameters
 A_m = [0 1; -6 -5];
@@ -38,7 +38,7 @@ G_m = sysD.B;
 K = place(F_n, G_n, eig(F_m));
 Fe = F_n - G_n*K;
 
-T = 0.01;                           %Filter Time Constant
+T = Ts;                             %Filter Time Constant
 eic = xic - xmic;                   %Error Initial Condition
 udic = (-Ts/T)*pinv(G_n)*eic;       %Initial Condition for Robust Control
 

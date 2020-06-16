@@ -1,14 +1,15 @@
-global A A_n A_m B B_n B_m tstep Ts tstop
+global A_n B_n tstep Ts tstop
+r2d = 180/pi;
 ref = sin(2*pi*0.3*time);
-in = upsample(control, 10);
-ud = upsample(ud, 10);
-Dis = (A(2, :)-A_n(2, :))*[x1'; x2'] + (B(2)-B_n(2))*in(1:((tstop/tstep)+1))' + (5*sin(15*time) + 3*cos(5*time).*abs(x1).*x2 + 10*sin(10*time).*abs(x2).*x2)' + (A_n(2, :) - A_m(2, :))*[x1m'; x2m'] - B_m(2)*ref';
-x1 = x1*180/pi;
-x2 = x2*180/pi;
-x1m = x1m*180/pi;
-x2m = x2m*180/pi;
-e1 = e1*180/pi;
-e2 = e2*180/pi;
+in = upsample(control, Ts/tstep);
+ud = upsample(ud, Ts/tstep);
+Dis = pinv(B_n)*(err_dot' - A_n*[e1'; e2'] - B_n*(in(1:(tstop/tstep)+1))');
+x1 = x1*r2d;
+x2 = x2*r2d;
+x1m = x1m*r2d;
+x2m = x2m*r2d;
+e1 = e1*r2d;
+e2 = e2*r2d;
 
 set(gcf, 'DefaultLineLineWidth', 1.5)
 set(gca, 'FontSize', 24, 'FontWeight', 'bold')
@@ -34,7 +35,7 @@ grid on
 figure;
 set(gcf, 'DefaultLineLineWidth', 1.5)
 set(gca, 'FontSize', 24, 'FontWeight', 'bold')
-plot(0:Ts:tstop, control, 'b');
+plot(0:Ts:tstop, control*r2d, 'b');
 xlabel('Time');
 ylabel('Aileron Deflection (^o)');
 grid on
