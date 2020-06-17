@@ -36,7 +36,7 @@ G_m = sysD.B;
 
 %Pole Placement
 Q = eye(2);
-R = 0.1;
+R = 3;
 K = dlqr(F_n, G_n, Q, R);
 Fe = F_n - G_n*K;
 
