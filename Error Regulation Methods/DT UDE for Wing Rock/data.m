@@ -9,12 +9,12 @@ Ts = 0.01;
 tstop = 10;
 
 %Nominal Plant Parameters
-A_n = [0 1; -20 1];
-B_n = [0; 0.5*180/pi];
+A_n = [0 1; -26.7 0.765];
+B_n = [0; 0.75*180/pi];
 
 %Actual Plant Parameters
-A = [0 1; -26.7 0.765];
-B = [0; 0.75*180/pi];
+A = [0 1; -20 1];
+B = [0; 0.5*180/pi];
 xic = [pi/6; -pi/6];
 
 %Reference Model Parameters
@@ -35,7 +35,9 @@ F_m = sysD.A;
 G_m = sysD.B;
 
 %Pole Placement
-K = place(F_n, G_n, eig(F_m));
+Q = eye(2);
+R = 0.1;
+K = dlqr(F_n, G_n, Q, R);
 Fe = F_n - G_n*K;
 
 T = Ts;                             %Filter Time Constant
