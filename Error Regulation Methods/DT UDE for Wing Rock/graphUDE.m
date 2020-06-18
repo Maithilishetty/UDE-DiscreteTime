@@ -19,7 +19,7 @@ plot(time, x1, 'b');
 hold on
 plot(time, x1m, 'r--');
 xlabel('Time(s)');
-ylabel('Roll Angle $\phi(^{\circ})$');
+ylabel('Roll Angle $\phi (^{\circ})$');
 legend('System Roll Angle', 'Reference Roll Angle');
 grid on
 
@@ -30,11 +30,8 @@ set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
 set(gca, 'FontSize', 24, 'FontWeight', 'bold')
 plot(time, x2, 'b');
-hold on
-plot(time, x2m, 'r--');
 xlabel('Time(s)');
-ylabel('Roll Rate $p(^{\circ}s^{-1})$');
-legend('System Roll Rate', 'Reference Roll Rate');
+ylabel('System Roll Rate $p (^{\circ}s^{-1})$');
 grid on
 
 figure;
@@ -55,11 +52,8 @@ set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
 set(gca, 'FontSize', 24, 'FontWeight', 'bold')
 plot(time, e1, 'r');
-hold on
-plot(time, e2, 'b--');
 xlabel('Time(s)');
-ylabel('Tracking Errors');
-legend('Error in Roll Angle', 'Error in Roll Rate');
+ylabel('Tracking Error in Roll Angle $(^{\circ})$');
 grid on
 
 figure;
@@ -69,6 +63,6 @@ set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
 set(gca, 'FontSize', 24, 'FontWeight', 'bold')
 plot(time, (Dis + (ud(1:(tstop/tstep + 1)))')*r2d, 'r');
-xlabel('Time(s)', 'Interpreter', 'latex');
+xlabel('Time(s)');
 ylabel('Disturbance Estimation Error $(^{\circ}s^{-2})$');
 grid on

@@ -1,7 +1,7 @@
 global A_n B_n tstep Ts tstop
 in = upsample(control, 10);
 ud = upsample(ud, 10);
-Dis = pinv(B_n)*(err' - A_n*[e1'; e2'] - B_n*(in(1:(tstop/tstep)+1))');
+Dis = pinv(B_n)*(err_dot' - A_n*[e1'; e2'] - B_n*(in(1:(tstop/tstep)+1))');
 
 set(groot,'defaultAxesTickLabelInterpreter','latex'); 
 set(groot,'defaulttextinterpreter','latex');

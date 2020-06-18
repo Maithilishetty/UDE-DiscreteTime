@@ -28,10 +28,14 @@ sysD = c2d(sys, Ts);
 F_n = sysD.A;
 G_n = sysD.B;
 
-%LQR Parameters
-Q = eye(2);
-R = 1;
-K = dlqr(F_n, G_n, Q, R);
+%Discretization of Model
+sys = ss(A_m, B_m, [1 0], 0);
+sysD = c2d(sys, Ts);
+F_m = sysD.A;
+G_m = sysD.B;
+
+%Controller Parameters
+K = acker(F_n, G_n, eig(F_m));
 Fe = F_n - G_n*K;
 
 T = 0.01;                           %Filter Time Constant
