@@ -5,7 +5,7 @@ clc
 global tstep tstop F_n G_n F G xic F_m G_m xmic K Fe T eic udic
 
 tstep = 0.01;
-tstop = 1.5;
+tstop = 1;
 
 %Nominal Plant Parameters
 F_n = [0 1; 0.6 -0.8];
@@ -21,10 +21,8 @@ F_m = [0 1; -0.5 0.5];
 G_m = [0; 1];
 xmic = [-3; -2];
 
-%LQR Parameters
-Q = eye(2);
-R = 1;
-K = dlqr(F_n, G_n, Q, R);
+%Controller Parameters
+K = acker(F_n, G_n, eig(F_m));
 Fe = F_n - G_n*K;
 
 T = 0.01;                           %Filter Time Constant

@@ -21,10 +21,8 @@ A_m = [0 1; -6 -5];
 B_m = [0; 1];
 xmic = [-3; -2];
 
-%LQR Parameters
-Q = eye(2);
-R = 1;
-K = lqr(A_n, B_n, Q, R);
+%Controller Parameters
+K = acker(A_n, B_n, eig(A_m));
 Ae = A_n - B_n*K;
 
 T = 0.01;           %Filter Time Constant

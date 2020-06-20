@@ -1,46 +1,60 @@
-global F F_n G G_n F_m G_m
-ref = sin(2*pi*0.3*time);
-Dis = (F(2, :)-F_n(2, :))*[x1'; x2'] + (G(2)-G_n(2))*control' + 0.01*(sin(time.*x1.*x1))' + (F_n(2, :) - F_m(2, :))*[x1'; x2'] - G_m(2)*ref';
+global F_n G_n
+Dis = pinv(G_n)*(err_d' - F_n*[e1'; e2'] - G_n*control');
 
-stem(time, x1, 'b', 'filled');
+set(groot,'defaultAxesTickLabelInterpreter','latex'); 
+set(groot,'defaulttextinterpreter','latex');
+set(groot,'defaultLegendInterpreter','latex');
+set(gcf, 'DefaultLineLineWidth', 1.5)
+plot(time, x1, 'b');
 hold on
-stem(time, x1m, 'r', 'filled');
-xlabel('Time');
-ylabel('Value');
-title('State x1 and State x1m');
-legend('State x1', 'State x1m');
+plot(time, x1m, 'r--');
+xlabel('Time(s)');
+ylabel('$x_1(k)$ and $x_{1m}(k)$');
+legend('State $x_1$', 'State $x_{1m}$', 'Location', 'southeast');
 grid on
 
 figure;
-stem(time, x2, 'b', 'filled');
+set(groot,'defaultAxesTickLabelInterpreter','latex'); 
+set(groot,'defaulttextinterpreter','latex');
+set(groot,'defaultLegendInterpreter','latex');
+set(gcf, 'DefaultLineLineWidth', 1.5)
+plot(time, x2, 'b');
 hold on
-stem(time, x2m, 'r', 'filled');
-xlabel('Time');
-ylabel('Value');
-title('State x2 and State x2m');
-legend('State x2', 'State x2m');
+plot(time, x2m, 'r--');
+xlabel('Time(s)');
+ylabel('$x_2(k)$ and $x_{2m}(k)$');
+legend('State $x_2$', 'State $x_{2m}$', 'Location', 'southeast');
 grid on
 
 figure;
-stem(time, control, 'b', 'filled');
-xlabel('Time');
-ylabel('Value');
-title('Control Input');
+set(groot,'defaultAxesTickLabelInterpreter','latex'); 
+set(groot,'defaulttextinterpreter','latex');
+set(groot,'defaultLegendInterpreter','latex');
+set(gcf, 'DefaultLineLineWidth', 1.5)
+plot(time, control, 'b');
+xlabel('Time(s)');
+ylabel('Control Input $u(k)$');
 grid on
 
 figure;
-stem(time, e1, 'r', 'filled');
+set(groot,'defaultAxesTickLabelInterpreter','latex'); 
+set(groot,'defaulttextinterpreter','latex');
+set(groot,'defaultLegendInterpreter','latex');
+set(gcf, 'DefaultLineLineWidth', 1.5)
+plot(time, e1, 'r');
 hold on
-stem(time, e2, 'b', 'filled');
-xlabel('Time');
-ylabel('Value');
-title('Tracking Errors');
-legend('Error in x1', 'Error in x2');
+plot(time, e2, 'b--');
+xlabel('Time(s)');
+ylabel('Tracking Errors $e_1(k)$ and $e_2(k)$');
+legend('Error in $x_1$', 'Error in $x_2$');
 grid on
 
 figure;
-stem(time, Dis + ud', 'r', 'filled');
-xlabel('Time');
-ylabel('Value');
-title('Disturbance Estimation Error');
+set(groot,'defaultAxesTickLabelInterpreter','latex'); 
+set(groot,'defaulttextinterpreter','latex');
+set(groot,'defaultLegendInterpreter','latex');
+set(gcf, 'DefaultLineLineWidth', 1.5)
+plot(time, Dis + ud', 'r');
+xlabel('Time(s)');
+ylabel('Disturbance Estimation Error $\tilde{L}_d(k)$', 'Interpreter', 'latex');
 grid on

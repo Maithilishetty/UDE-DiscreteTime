@@ -12,8 +12,8 @@ plot(time, x1, 'b');
 hold on
 plot(time, x1m, 'r--');
 xlabel('Time(s)');
-ylabel('State x1 and State x1m');
-legend('State x1', 'State x1m');
+ylabel('$x_1(t)$ and $x_{1m}(t)$');
+legend('State $x_1$', 'State $x_{1m}$', 'Location', 'southeast');
 grid on
 
 figure;
@@ -26,8 +26,8 @@ plot(time, x2, 'b');
 hold on
 plot(time, x2m, 'r--');
 xlabel('Time(s)');
-ylabel('State x2 and State x2m');
-legend('State x2', 'State x2m');
+ylabel('$x_2(t)$ and $x_{2m}(t)$');
+legend('State $x_2$', 'State $x_{2m}$');
 grid on
 
 figure;
@@ -38,7 +38,7 @@ set(gcf, 'DefaultLineLineWidth', 1.5)
 set(gca, 'FontSize', 24, 'FontWeight', 'bold')
 plot(0:Ts:tstop, control, 'b');
 xlabel('Time(s)');
-ylabel('Control Input');
+ylabel('Control Input $u(t)$');
 grid on
 
 figure;
@@ -51,8 +51,8 @@ plot(time, e1, 'r');
 hold on
 plot(time, e2, 'b--');
 xlabel('Time(s)');
-ylabel('Tracking Errors');
-legend('Error in x1', 'Error in x2');
+ylabel('Tracking Errors $e_1(t)$ and $e_2(t)$');
+legend('Error in $x_1$', 'Error in $x_2$');
 grid on
 
 figure;
@@ -63,5 +63,5 @@ set(gcf, 'DefaultLineLineWidth', 1.5)
 set(gca, 'FontSize', 24, 'FontWeight', 'bold')
 plot(time, Dis + (ud(1:(tstop/tstep + 1)))', 'r');
 xlabel('Time(s)');
-ylabel('Disturbance Estimation Error');
+ylabel('Disturbance Estimation Error $\tilde{L}(t)$', 'Interpreter', 'latex');
 grid on
