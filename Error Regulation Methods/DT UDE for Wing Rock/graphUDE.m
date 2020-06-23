@@ -1,7 +1,8 @@
 global A_n B_n tstep Ts tstop r2d
-in = upsample(control, Ts/tstep);
-ud = upsample(ud, Ts/tstep);
-Dis = pinv(B_n)*(err_dot' - A_n*[e1'; e2'] - B_n*(in(1:(tstop/tstep)+1))');
+e1 = downsample(e1, Ts/tstep);
+e2 = downsample(e2, Ts/tstep);
+err_dot = downsample(err_dot, Ts/tstep);
+Dis = pinv(B_n)*(err_dot' - A_n*[e1'; e2'] - B_n*control');
 x1 = x1*r2d;
 x2 = x2*r2d;
 x1m = x1m*r2d;
@@ -13,9 +14,9 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(time, x1, 'b');
+plot(time, x1, 'k');
 hold on
-plot(time, x1m, 'r--');
+plot(time, x1m, 'k--');
 ylim([-80 80])
 xlabel('Time(s)');
 ylabel('Roll Angle $\phi (^{\circ})$');
@@ -27,7 +28,7 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(time, x2, 'b');
+plot(time, x2, 'k');
 xlabel('Time(s)');
 ylabel('System Roll Rate $p (^{\circ}s^{-1})$');
 grid on
@@ -37,7 +38,7 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(0:Ts:tstop, control*r2d, 'b');
+plot(0:Ts:tstop, control*r2d, 'k');
 xlabel('Time(s)');
 ylabel('Aileron Deflection $(^{\circ})$');
 grid on
@@ -47,7 +48,7 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(time, e1, 'r');
+plot(0:Ts:tstop, e1, 'k');
 xlabel('Time(s)');
 ylabel('Tracking Error in Roll Angle $(^{\circ})$');
 grid on
@@ -57,7 +58,10 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(time, (Dis + (ud(1:(tstop/tstep + 1)))')*r2d, 'r');
+plot(0:Ts:tstop, Dis*r2d, 'k');
+hold on
+plot(0:Ts:tstop, -ud*r2d, 'k--');
 xlabel('Time(s)');
-ylabel('Disturbance Estimation Error $(^{\circ}s^{-2})$');
+ylabel('Disturbance and its Estimate');
+legend('Disturbance $L(t)$', 'Estimate $\hat{L}(t)$');
 grid on

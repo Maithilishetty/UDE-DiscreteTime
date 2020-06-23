@@ -14,12 +14,12 @@ B_n = [0; 2];
 %Actual Plant Parameters
 A = [0 1; -1 4];
 B = [0; 1.5];
-xic = [-2; 1];
+xic = [-3; 3];
 
 %Reference Model Parameters
 A_m = [0 1; -6 -5];
 B_m = [0; 1];
-xmic = [-3; -2];
+xmic = [-2; 2];
 
 %Controller Parameters
 K = acker(A_n, B_n, eig(A_m));

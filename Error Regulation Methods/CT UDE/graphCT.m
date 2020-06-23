@@ -5,9 +5,9 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(time, x1, 'b');
+plot(time, x1, 'k');
 hold on
-plot(time, x1m, 'r--');
+plot(time, x1m, 'k--');
 xlabel('Time(s)');
 ylabel('$x_1(t)$ and $x_{1m}(t)$');
 legend('State $x_1$', 'State $x_{1m}$', 'Location', 'southeast');
@@ -18,12 +18,12 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(time, x2, 'b');
+plot(time, x2, 'k');
 hold on
-plot(time, x2m, 'r--');
+plot(time, x2m, 'k--');
 xlabel('Time(s)');
 ylabel('$x_2(t)$ and $x_{2m}(t)$');
-legend('State $x_2$', 'State $x_{2m}$', 'Location', 'southeast');
+legend('State $x_2$', 'State $x_{2m}$');
 grid on
 
 figure;
@@ -32,7 +32,7 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(time, control, 'b');
+plot(time, control, 'k');
 xlabel('Time(s)');
 ylabel('Control Input $u(t)$');
 grid on
@@ -42,12 +42,12 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(time, e1, 'r');
+plot(time, e1, 'k');
 hold on
-plot(time, e2, 'b--');
+plot(time, e2, 'k--');
 xlabel('Time(s)');
 ylabel('Tracking Errors $e_1(t)$ and $e_2(t)$');
-legend('Error in $x_1$', 'Error in $x_2$', 'Location', 'southeast');
+legend('Error in $x_1$', 'Error in $x_2$');
 grid on
 
 figure;
@@ -55,7 +55,10 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(time, Dis + ud', 'r');
+plot(time, Dis, 'k');
+hold on
+plot(time, -ud, 'k--');
 xlabel('Time(s)');
-ylabel('Disturbance Estimation Error $\tilde{L}(t)$', 'Interpreter', 'latex');
+ylabel('Disturbance and its Estimate');
+legend('Disturbance $L(t)$', 'Estimate $\hat{L}(t)$');
 grid on

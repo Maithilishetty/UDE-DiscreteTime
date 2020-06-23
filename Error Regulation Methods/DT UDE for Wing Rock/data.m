@@ -40,5 +40,5 @@ T = Ts;                             %Filter Time Constant
 eic = xic - xmic;                   %Error Initial Condition
 udic = (-Ts/T)*pinv(G_n)*eic;       %Initial Condition for Robust Control
 
-sim('UDE.slx');
+sim('WR_UDE.slx');
 graphUDE
