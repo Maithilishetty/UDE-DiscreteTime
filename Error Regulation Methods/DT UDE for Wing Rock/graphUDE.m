@@ -22,6 +22,7 @@ xlabel('Time(s)');
 ylabel('Roll Angle $\phi (^{\circ})$');
 legend('System Roll Angle', 'Reference Roll Angle');
 grid on
+set(gca, 'FontSize', 18)
 
 figure;
 set(groot,'defaultAxesTickLabelInterpreter','latex'); 
@@ -32,6 +33,7 @@ plot(time, x2, 'k');
 xlabel('Time(s)');
 ylabel('System Roll Rate $p (^{\circ}s^{-1})$');
 grid on
+set(gca, 'FontSize', 18)
 
 figure;
 set(groot,'defaultAxesTickLabelInterpreter','latex');  
@@ -42,6 +44,7 @@ plot(0:Ts:tstop, control*r2d, 'k');
 xlabel('Time(s)');
 ylabel('Aileron Deflection $(^{\circ})$');
 grid on
+set(gca, 'FontSize', 18)
 
 figure;
 set(groot,'defaultAxesTickLabelInterpreter','latex');  
@@ -52,6 +55,7 @@ plot(0:Ts:tstop, e1, 'k');
 xlabel('Time(s)');
 ylabel('Tracking Error in Roll Angle $(^{\circ})$');
 grid on
+set(gca, 'FontSize', 18)
 
 figure;
 set(groot,'defaultAxesTickLabelInterpreter','latex'); 
@@ -65,3 +69,4 @@ xlabel('Time(s)');
 ylabel('Disturbance and its Estimate');
 legend('Disturbance $L(t)$', 'Estimate $\hat{L}(t)$');
 grid on
+set(gca, 'FontSize', 18)

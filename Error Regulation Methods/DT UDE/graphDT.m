@@ -12,6 +12,7 @@ xlabel('Time(s)');
 ylabel('$x_1(k)$ and $x_{1m}(k)$');
 legend('State $x_1$', 'State $x_{1m}$', 'Location', 'southeast');
 grid on
+set(gca, 'FontSize', 18)
 
 figure;
 set(groot,'defaultAxesTickLabelInterpreter','latex'); 
@@ -25,6 +26,7 @@ xlabel('Time(s)');
 ylabel('$x_2(k)$ and $x_{2m}(k)$');
 legend('State $x_2$', 'State $x_{2m}$', 'Location', 'southeast');
 grid on
+set(gca, 'FontSize', 18)
 
 figure;
 set(groot,'defaultAxesTickLabelInterpreter','latex'); 
@@ -35,6 +37,7 @@ plot(time, control, 'k');
 xlabel('Time(s)');
 ylabel('Control Input $u(k)$');
 grid on
+set(gca, 'FontSize', 18)
 
 figure;
 set(groot,'defaultAxesTickLabelInterpreter','latex'); 
@@ -48,6 +51,7 @@ xlabel('Time(s)');
 ylabel('Tracking Errors $e_1(k)$ and $e_2(k)$');
 legend('Error in $x_1$', 'Error in $x_2$');
 grid on
+set(gca, 'FontSize', 18)
 
 figure;
 set(groot,'defaultAxesTickLabelInterpreter','latex'); 
@@ -61,3 +65,4 @@ xlabel('Time(s)');
 ylabel('Disturbance and its Estimate');
 legend('Disturbance $L_d(k)$', 'Estimate $\hat{L}_d(k)$');
 grid on
+set(gca, 'FontSize', 18)
