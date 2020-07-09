@@ -1,6 +1,6 @@
-close all
-clear
-clc
+% close all
+% clear
+% clc
 
 global tstep Ts tstop A_n B_n A B xic A_m B_m xmic F_n G_n K Fe T eic udic
 
@@ -15,7 +15,7 @@ B_n = [0; 2];
 %Actual Plant Parameters
 A = [0 1; -1 4];
 B = [0; 1.5];
-xic = [-3; 3];
+xic = [3; -1];
 
 %Reference Model Parameters
 A_m = [0 1; -6 -5];
@@ -43,4 +43,4 @@ eic = xic - xmic;                   %Error Initial Condition
 udic = (-Ts/T)*pinv(G_n)*eic;       %Initial Condition for Robust Control
 
 sim('UDE.slx');
-graphUDE
+%graphUDE

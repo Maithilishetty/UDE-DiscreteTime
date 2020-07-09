@@ -17,12 +17,12 @@ B_n = [0; 0.75*r2d];
 %Actual Plant Parameters
 A = [0 1; -20 1];
 B = [0; 0.5*r2d];
-xic = [pi/6; -pi/6];
+xic = [pi/9; 0];
 
 %Reference Model Parameters
 A_m = [0 1; -6 -5];
 B_m = [0; 1];
-xmic = [-pi/6; -pi/6];
+xmic = [0; 0];
 
 %Discretization
 sys = ss(A_n, B_n, [1 0], 0);

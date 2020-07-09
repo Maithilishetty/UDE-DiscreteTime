@@ -17,7 +17,6 @@ set(gcf, 'DefaultLineLineWidth', 1.5)
 plot(time, x1, 'k');
 hold on
 plot(time, x1m, 'k--');
-ylim([-80 80])
 xlabel('Time(s)');
 ylabel('Roll Angle $\phi (^{\circ})$');
 legend('System Roll Angle', 'Reference Roll Angle');
