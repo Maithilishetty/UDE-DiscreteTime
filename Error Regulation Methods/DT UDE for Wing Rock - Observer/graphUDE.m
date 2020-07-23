@@ -5,6 +5,8 @@ err_dot = downsample(err_dot, Ts/tstep);
 Dis = pinv(B_n)*(err_dot' - A_n*[e1'; e2'] - B_n*control');
 x1 = x1*r2d;
 x2 = x2*r2d;
+x1_hat = x1_hat*r2d;
+x2_hat = x2_hat*r2d;
 x1m = x1m*r2d;
 x2m = x2m*r2d;
 e1 = e1*r2d;
@@ -30,8 +32,11 @@ set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 1.5)
 plot(time, x2, 'k');
+hold on
+plot(0:Ts:tstop, x2_hat, 'k--');
 xlabel('Time(s)');
-ylabel('System Roll Rate $p (^{\circ}s^{-1})$');
+ylabel('Roll Rate $p (^{\circ}s^{-1})$');
+legend('Actual Roll Rate', 'Estimated Roll Rate');
 grid on
 set(gca, 'FontSize', 18)
 
@@ -46,28 +51,16 @@ ylabel('Aileron Deflection $(^{\circ})$');
 grid on
 set(gca, 'FontSize', 18)
 
-figure;
-set(groot,'defaultAxesTickLabelInterpreter','latex');  
-set(groot,'defaulttextinterpreter','latex');
-set(groot,'defaultLegendInterpreter','latex');
-set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(0:Ts:tstop, e1, 'k');
-xlabel('Time(s)');
-ylabel('Tracking Error in Roll Angle $(^{\circ})$');
-grid on
-set(gca, 'FontSize', 18)
-
-figure;
-set(groot,'defaultAxesTickLabelInterpreter','latex');  
-set(groot,'defaulttextinterpreter','latex');
-set(groot,'defaultLegendInterpreter','latex');
-set(gcf, 'DefaultLineLineWidth', 1.5)
-plot(0:Ts:tstop, err_est, 'k');
-xlabel('Time(s)');
-ylabel('State Estimation Error for Roll Angle $(^{\circ})$');
-grid on
-axis([0 10 -1 1])
-set(gca, 'FontSize', 18)
+% figure;
+% set(groot,'defaultAxesTickLabelInterpreter','latex');  
+% set(groot,'defaulttextinterpreter','latex');
+% set(groot,'defaultLegendInterpreter','latex');
+% set(gcf, 'DefaultLineLineWidth', 1.5)
+% plot(0:Ts:tstop, e1, 'k');
+% xlabel('Time(s)');
+% ylabel('Tracking Error in Roll Angle $(^{\circ})$');
+% grid on
+% set(gca, 'FontSize', 18)
 
 figure;
 set(groot,'defaultAxesTickLabelInterpreter','latex'); 

@@ -36,17 +36,17 @@ sysD = c2d(sys, Ts);
 F_m = sysD.A;
 G_m = sysD.B;
 
-%Pole Placement
+%LQR Design
 Q = eye(2);
 R = 2;
 K = dlqr(F_n, G_n, Q, R);
 Fe = F_n - G_n*K;
 
 %Observer Parameters
-L = acker(F_n', [1 0]',[0;0])';
+L = acker(F_n', [1 0]',[0; 0])';
 xhat_ic = [pi/9; 0];
 
-T = Ts;                             %Filter Time Constant
+T = 2*Ts;                           %Filter Time Constant
 eic = xic - xmic;                   %Error Initial Condition
 udic = (-Ts/T)*pinv(G_n)*eic;       %Initial Condition for Robust Control
 
