@@ -1,7 +1,7 @@
 # DiscreteTime-UDE
 Discrete-Time Design and Applications of Uncertainty and Disturbance Estimator
 
-Designing the Uncertainty and Disturbance Estimator (UDE), a robust control strategy, in discrete-time. 5 simulation examples provided in the Error Regulation Methods folder:
+Designing the Uncertainty and Disturbance Estimator (UDE), a robust control strategy, in discrete-time. 5 simulation examples provided in the DT-UDE folder:
 1. UDE for continuous-time systems (CT UDE):
    Simulation of a new error-based continuous-time control law
 2. UDE for discrete-time systems (DT UDE):
