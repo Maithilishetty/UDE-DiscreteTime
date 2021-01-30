@@ -2,7 +2,7 @@ close all
 clear
 clc
 
-global tstep Ts tstop r2d A_n B_n A B xic A_m B_m xmic F_n G_n K Fe T eic udic
+global tstep Ts tstop r2d A_n B_n A B xic A_m B_m xmic F_n G_n K Fe Ki T eic udic
 
 tstep = 0.001;
 Ts = 0.01;
@@ -35,10 +35,10 @@ Q = eye(2);
 R = 2;
 K = dlqr(F_n, G_n, Q, R);
 Fe = F_n - G_n*K;
+Ki = -pinv(G_n);
 
 T = Ts;                             %Filter Time Constant
 eic = xic - xmic;                   %Error Initial Condition
-udic = (-Ts/T)*pinv(G_n)*eic;       %Initial Condition for Robust Control
 
-sim('WR_UDE.slx');
+sim('WR_UDE_PI.slx');
 graphUDE
