@@ -35,10 +35,11 @@ Q = eye(2);
 R = 2;
 K = dlqr(F_n, G_n, Q, R);
 Fe = F_n - G_n*K;
-Ki = -pinv(G_n);
 
 T = Ts;                             %Filter Time Constant
 eic = xic - xmic;                   %Error Initial Condition
+udic = (-Ts/T)*pinv(G_n)*eic;       %Initial Condition for Robust Control
+Ki = -(Ts/T)*pinv(G_n);
 
 sim('WR_UDE_PI.slx');
 graphUDE
