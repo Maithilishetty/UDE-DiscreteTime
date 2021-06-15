@@ -1,7 +1,15 @@
-Dis = zeros(length(time), 2);
-for i = 1:length(time)
-    A = [-2*rdot(i)/r(i) 0; 0 -2*rdot(i)/r(i)];
-    B = [1/r(i) 0; 1/r(i) -1/r(i)];
+global Ts tstep tstop
+
+Dis = zeros(length(0:Ts:tstop), 2);
+rD = downsample(r, Ts/tstep);
+rdot = downsample(rdot, Ts/tstep);
+e1 = downsample(e1, Ts/tstep);
+e2 = downsample(e2, Ts/tstep);
+errdot = downsample(errdot, Ts/tstep);
+
+for i = 1:length(0:Ts:tstop)
+    A = [-2*rdot(i)/rD(i) 0; 0 -2*rdot(i)/rD(i)];
+    B = [1/rD(i) 0; 1/rD(i) -1/rD(i)];
     PB = pinv(B);
     Dis(i, :) = PB*(errdot(i, :)' - A*[e1(i)'; e2(i)'] - B*[Azm(i)'; Aym(i)']);
 end
@@ -11,7 +19,7 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 2)
-plot(time, Aym, 'k')
+plot(0:Ts:tstop, Aym, 'k')
 xlabel('Time(s)');
 ylabel({'Commanded Yaw Acceleration';'$A^{c}_{ym}$ (m s$^{-2}$)'});
 grid on
@@ -22,7 +30,7 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 2)
-plot(time, Azm, 'k')
+plot(0:Ts:tstop, Azm, 'k')
 xlabel('Time(s)');
 ylabel({'Commanded Pitch Acceleration';'$A^{c}_{zm}$ (m s$^{-2}$)'});
 grid on
@@ -66,7 +74,7 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 2)
-plot(time, Dis(:, 1) + ud(:, 1), 'k')
+plot(0:Ts:tstop, Dis(:, 1) + ud(:, 1), 'k')
 xlabel('Time(s)');
 ylabel('Disturbance Estimation Error 1');
 grid on
@@ -77,7 +85,7 @@ set(groot,'defaultAxesTickLabelInterpreter','latex');
 set(groot,'defaulttextinterpreter','latex');
 set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 2)
-plot(time, Dis(:, 2) + ud(:, 2), 'k')
+plot(0:Ts:tstop, Dis(:, 2) + ud(:, 2), 'k')
 xlabel('Time(s)');
 ylabel('Disturbance Estimation Error 2');
 grid on

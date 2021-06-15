@@ -1,10 +1,10 @@
-close all
+% close all
 clear
 clc
 
 global tstop tstep d2r Vmic xic ldotic A_m B_m xmic Vt T
 
-tstop = 10;
+tstop = 3;
 tstep = 0.005;
 
 d2r = pi/180;
@@ -23,5 +23,5 @@ Vt = 800;
 
 T = 0.01;
 
-sim('simmodel.slx')
+sim('CTModel.slx')
 graphCT
