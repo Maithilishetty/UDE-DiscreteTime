@@ -2,7 +2,8 @@ close all
 clear
 clc
 
-global Ts tstop m1 m2 l1 l2 g m1a m2a l1a l2a mu1 mu2 mu1a mu2a A_n B_n xic A_m B_m xmic F_n G_n K Fe T eic udic
+global Ts tstop m1 m2 l1 l2 g m1a m2a l1a l2a mu1 mu2 mu1a mu2a A_n B_n xic A_m B_m xmic F_n G_n F_m G_m 
+global K Fe L xhatic ehatic T eic udic
 
 Ts = 0.001;
 tstop = 10;
@@ -24,14 +25,16 @@ A_m = blkdiag([0 1; -2 -3], [0 1; -2 -3]);
 B_m = [0 0; 1 0; 0 0; 0 1];
 xmic = zeros(4, 1);
 
+C = [1 0 0 0; 0 0 1 0];
+
 %Discretization
-sys = ss(A_n, B_n, [1 0 0 0; 0 0 1 0], 0);
+sys = ss(A_n, B_n, C, 0);
 sysD = c2d(sys, Ts);
 F_n = sysD.A;
 G_n = sysD.B;
 
 %Discretization of Model
-sys = ss(A_m, B_m, [1 0 0 0; 0 0 1 0], 0);
+sys = ss(A_m, B_m, C, 0);
 sysD = c2d(sys, Ts);
 F_m = sysD.A;
 G_m = sysD.B;
@@ -40,9 +43,13 @@ G_m = sysD.B;
 K = place(F_n, G_n, eig(F_m));
 Fe = F_n - G_n*K;
 
-T = 0.01;                           %Filter Time Constant
-eic = xic - xmic;                   %Error Initial Condition
-udic = (-Ts/T)*pinv(G_n)*eic;       %Initial Condition for Robust Control
+%Observer parameters
+L = (place(F_n', C', 0.1*eig(F_m)))';
+xhatic = zeros(4, 1);
+ehatic = xhatic - xmic;
 
-sim('DT_UDE.slx');
-graphDT
+T = 0.01;                           %Filter Time Constant
+udic = (-Ts/T)*pinv(G_n)*ehatic;    %Initial Condition for Robust Control
+
+sim('DT_UDE_Obs.slx');
+graphObs

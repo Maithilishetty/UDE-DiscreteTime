@@ -7,10 +7,11 @@ set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 2.25)
 plot(time, x1, 'k');
 hold on
+plot(time, x1hat, 'k-.');
 plot(time, x1m, 'k--');
 xlabel('Time(s)');
-ylabel('$\theta_1(t)$ and $\theta_{1m}(t)$');
-legend('State $\theta_1$', 'State $\theta_{1m}$');
+ylabel('Position of joint 1');
+legend('Actual Position', 'Estimated Position', 'Reference Position');
 grid on
 set(gca, 'FontSize', 18)
 
@@ -21,10 +22,11 @@ set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 2.25)
 plot(time, x3, 'k');
 hold on
+plot(time, x3hat, 'k-.');
 plot(time, x3m, 'k--');
 xlabel('Time(s)');
-ylabel('$\theta_2(t)$ and $\theta_{2m}(t)$');
-legend('State $\theta_2$', 'State $\theta_{2m}$');
+ylabel('Position of joint 2');
+legend('Actual Position', 'Estimated Position', 'Reference Position');
 grid on
 set(gca, 'FontSize', 18)
 
@@ -35,10 +37,11 @@ set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 2.25)
 plot(time, x2, 'k');
 hold on
+plot(time, x2hat, 'k-.');
 plot(time, x2m, 'k--');
 xlabel('Time(s)');
-ylabel('$\dot{\theta}_1(t)$ and $\dot{\theta}_{1m}(t)$');
-legend('State $\dot{\theta}_1$', 'State $\dot{\theta}_{1m}$');
+ylabel('Velocity of joint 1');
+legend('Actual Velocity', 'Estimated Velocity', 'Reference Velocity');
 grid on
 set(gca, 'FontSize', 18)
 
@@ -49,10 +52,11 @@ set(groot,'defaultLegendInterpreter','latex');
 set(gcf, 'DefaultLineLineWidth', 2.25)
 plot(time, x4, 'k');
 hold on
+plot(time, x4hat, 'k-.');
 plot(time, x4m, 'k--');
 xlabel('Time(s)');
-ylabel('$\dot{\theta}_2(t)$ and $\dot{\theta}_{2m}(t)$');
-legend('State $\dot{\theta}_2$', 'State $\dot{\theta}_{2m}$');
+ylabel('Velocity of joint 2');
+legend('Actual Velocity', 'Estimated Velocity', 'Reference Velocity');
 grid on
 set(gca, 'FontSize', 18)
 
