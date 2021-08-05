@@ -2,8 +2,8 @@ close all
 clear
 clc
 
-global Ts tstop m1 m2 l1 l2 g m1a m2a l1a l2a mu1 mu2 mu1a mu2a A_n B_n xic A_m B_m xmic F_n G_n F_m G_m 
-global K Fe L xhatic ehatic T eic udic operric
+global Ts tstop m1 m2 l1 l2 g m1a m2a l1a l2a mu1 mu2 mu1a mu2a A_n B_n xic
+global A_m B_m xmic F_n G_n F_m G_m K L xhatic operric T alpha
 
 Ts = 0.001;
 tstop = 10;
@@ -41,16 +41,14 @@ G_m = sysD.B;
 
 %Controller Parameters
 K = place(F_n, G_n, eig(F_m));
-Fe = F_n - G_n*K;
 
 %Observer parameters
 L = (place(F_n', C', 0.1*eig(F_m)))';
 xhatic = zeros(4, 1);
-ehatic = xhatic - xmic;
 operric = C*(xic - xhatic);
 
-T = 0.005;                           %Filter Time Constant
-udic = (-Ts/T)*pinv(G_n)*ehatic;    %Initial Condition for Robust Control
+T = 0.01;                           %Filter Time Constant
+alpha = 1;                        %Parameter alpha
 
-sim('DT_UDE_Obs.slx');
-graphObs
+sim('DT_UDE_Alpha.slx');
+graphAlpha
