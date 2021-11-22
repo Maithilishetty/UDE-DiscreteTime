@@ -2,7 +2,7 @@ close all
 clear
 clc
 
-global Ts tstop m1 m2 l1 l2 g m1a m2a l1a l2a mu1 mu2 mu1a mu2a A_n B_n xic A_m B_m xmic F_n G_n K Fe T eic udic K_D
+global Ts tstop m1 m2 l1 l2 g m1a m2a l1a l2a mu1 mu2 mu1a mu2a A_n B_n xic A_m B_m xmic F_n G_n K Fe eic epsilon K_D
 
 Ts = 0.001;
 tstop = 30;
@@ -40,9 +40,8 @@ G_m = sysD.B;
 K = place(F_n, G_n, eig(F_m));
 Fe = F_n - G_n*K;
 K_D = 100;
-T = 0.01;                           %Filter Time Constant
+epsilon = 0.1;
 eic = xic - xmic;                   %Error Initial Condition
-udic = (-Ts/T)*pinv(G_n)*eic;       %Initial Condition for Robust Control
 
 sim('SMC_sim.slx');
 graph_smc
