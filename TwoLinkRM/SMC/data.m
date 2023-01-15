@@ -39,7 +39,7 @@ G_m = sysD.B;
 %Controller Parameters
 K = place(F_n, G_n, eig(F_m));
 Fe = F_n - G_n*K;
-K_D = 100;
+K_D = 0.01;
 epsilon = 0.1;
 eic = xic - xmic;                   %Error Initial Condition
 
